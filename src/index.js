@@ -12,6 +12,18 @@ import {
   RouterProvider,
 } from "react-router-dom";
 
+function adjustZoom() {
+  const viewportWidth = Math.max(document.documentElement.clientWidth || 0, window.innerWidth || 0);
+  const zoomLevel = (viewportWidth) / 1920;
+
+  document.body.style.transform = `scale(${zoomLevel})`;
+  document.body.style.transformOrigin = "top left"
+}
+
+// Initial adjustment and on window resize
+adjustZoom();
+window.addEventListener('resize', adjustZoom);
+
 const router = createBrowserRouter([
   {
     path: "/",
